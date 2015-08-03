@@ -1,5 +1,5 @@
 {
-  "name": "peter",
+  "name": "arana",
   "version": "1.0.0",
   "description": "with great power comes great responsibility",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nelsonic/peter.git"
+    "url": "git+https://github.com/nelsonic/arana.git"
   },
   "keywords": [
     "spider",
@@ -17,7 +17,7 @@
   "author": "this guy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nelsonic/peter/issues"
+    "url": "https://github.com/nelsonic/arana/issues"
   },
-  "homepage": "https://github.com/nelsonic/peter#readme"
+  "homepage": "https://github.com/nelsonic/arana#readme"
 }
