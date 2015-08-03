@@ -1,0 +1,23 @@
+{
+  "name": "peter",
+  "version": "1.0.0",
+  "description": "with great power comes great responsibility",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nelsonic/peter.git"
+  },
+  "keywords": [
+    "spider",
+    "man"
+  ],
+  "author": "this guy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nelsonic/peter/issues"
+  },
+  "homepage": "https://github.com/nelsonic/peter#readme"
+}
