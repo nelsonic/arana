@@ -22,6 +22,5 @@ test(file + " Confirm RedisCloud is accessible GET/SET", function(t) {
     redisClient.end();   // ensure redis con closed! - \\
     t.equal(redisClient.connected, false, "✓ Connection to RedisCloud Closed");
     t.end();
-      // process.exit(0);
   });
 });
