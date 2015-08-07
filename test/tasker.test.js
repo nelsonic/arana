@@ -24,3 +24,11 @@ test('TASKER PROFILE - list of next tasks after scraping a profile', function(t)
     t.end();
   })
 });
+
+test('TASKER NEXT_PAGE - if the object has a next_page property', function(t){
+  gs('alanshaw/followers', function(err, data){
+    var tasks = tasker(data);
+    t.ok(tasks[0].indexOf('?page=2') > -1, 'next_page task: ' + tasks[0])
+    t.end();
+  })
+});
