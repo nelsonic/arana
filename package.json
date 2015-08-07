@@ -4,7 +4,14 @@
   "description": "with great power comes great responsibility",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs": "./node_modules/jsdoc/jsdoc.js ./lib/*.js",
+    "quick": "./node_modules/tape/bin/tape ./test/*.js",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && ./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc --exclude-path .gitignore .",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=8bdde2e5617587b59c481ef04b710d04a78a6469fcee71840d58da7a839dda6b ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
+    "open-coverage": "open ./test/coverage.html",
+    "spec": "node ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +30,26 @@
   "dependencies": {
     "esta": "^4.2.0",
     "github-scraper": "^2.1.0",
+    "hiredis": "^0.4.0",
     "redis": "^0.12.1"
   },
   "devDependencies": {
-    "tape": "^4.0.3"
+    "codeclimate-test-reporter": "0.1.0",
+    "decache": "^3.0.2",
+    "istanbul": "^0.3.17",
+    "jsdoc": "^3.3.2",
+    "jshint": "^2.8.0",
+    "nodemon": "^1.4.0",
+    "pre-commit": "1.0.10",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.0"
+  },
+  "pre-commit": [
+    "jshint",
+    "coverage",
+    "codeclimate"
+  ],
+  "engines": {
+    "node": ">=0.12"
   }
 }

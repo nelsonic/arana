@@ -1,5 +1,5 @@
 var test = require('tape');
-var wq = require('../lib/work-queue');
+var wq = require('../lib/work_queue');
 test('Add an item to the work queue', function(t){
   var task = '/url '+new Date().getTime();
   wq.add(task, function(err, data) {
