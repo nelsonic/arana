@@ -1,11 +1,12 @@
-require('../lib/env.js') // load environment variables
+var envfile = require('path').resolve(__dirname + '/../env.json');
+require('env2')(envfile) // load environment variables into process.env object
+
 var test    = require('tape');
 var decache = require('decache');
+var redis   = require('redis');
 
 var dir     = __dirname.split('/')[__dirname.split('/').length-1];
 var file    = dir + __filename.replace(__dirname, '') + " -> ";
-
-var redis   = require('redis');
 
 test(file + " Confirm RedisCloud is accessible GET/SET", function(t) {
 
