@@ -1,6 +1,6 @@
 {
   "name": "arana",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "with great power comes great responsibility",
   "main": "index.js",
   "scripts": {
@@ -22,14 +22,14 @@
     "man"
   ],
   "author": "this guy",
-  "license": "ISC",
+  "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/nelsonic/arana/issues"
   },
   "homepage": "https://github.com/nelsonic/arana#readme",
   "dependencies": {
     "env2": "^1.0.5",
-    "esta": "^4.2.0",
+    "esta": "4.2.0",
     "github-scraper": "^2.1.0",
     "hiredis": "^0.4.0",
     "redis": "^0.12.1"
@@ -52,6 +52,5 @@
   ],
   "engines": {
     "node": ">=0.12"
-  },
-  "license": "GPL-2.0"
+  }
 }

@@ -1,12 +1,29 @@
 var test = require('tape');
 var wq = require('../lib/work_queue');
+
 test('Add an item to the work queue', function(t){
   var task = '/url '+new Date().getTime();
   wq.add(task, function(err, data) {
     t.ok(data > 0, 'Task was added at a index: ' + data)
-    console.log(' - - - - - - - - - - - - - - - ');
+    // console.log(' - - - - - - - - - - - - - - - ');
     // console.log(err, data);
     t.end();
-    wq.redisClient.end();
   })
 });
+
+test('Fetch the next task from the work queue', function(t){
+  wq.next(function(err, data) {
+    t.ok(err === null, "no error retrieving task from work queue")
+    t.ok(data.indexOf('/url') > -1, 'Next task is: ' + data)
+    // console.log(' - - - - - - - - - - - - - - - ');
+    // console.log(err, data);
+    t.end()
+  })
+});
+
+test('Close redis connection', function(t){
+  wq.redisClient.end();
+  t.ok(wq.redisClient.connected === false, "Still Connected to Redis? "+wq.redisClient.connected);
+  t.end();
+
+})
