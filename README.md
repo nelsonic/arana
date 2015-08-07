@@ -32,8 +32,12 @@ anything *fancy*!
 
 
 
-**Q**uestion: should we add all links on a page to the work queue emediatedly
-or
+**Q**uestion: should we add all links on a page to the work queue immediately
+***or*** only add links to the queue as we find them?  
+**A**: I think we need to add all related links to the queue *immediately*
+to ensure that we get content-complete as quickly as possible.
+
+
 
 
 ## Name?
