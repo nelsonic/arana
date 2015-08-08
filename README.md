@@ -37,7 +37,8 @@ anything *fancy*!
 **A**: I think we need to add all related links to the queue *immediately*
 to ensure that we get content-complete as quickly as possible.
 
-
+> Use Sorted Sets to Implement a Queue?
+http://stackoverflow.com/a/8928885/1148249
 
 
 ## Name?
