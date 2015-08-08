@@ -81,7 +81,7 @@ test('Add list followers to Profile with EXISTING Followers object', function(t)
     var fictional_follower = 'EverythingIsAwesome' + Math.floor(Math.random()*100000000000);
     // console.log(fictional_follower);
     data.entries.push(fictional_follower);
-    recorder.add_followers(data, function(res) {
+    recorder(data, function(res) {
       var profile = {
         id:    res._id,
         index: res._index,
