@@ -33,13 +33,37 @@ test('TASKER NEXT_PAGE - if the object has a next_page property', function(t){
   })
 });
 
-test('TASKER PROFILE REPOS - if tab=repositories add tasks or each repo', function(t){
+test('TASKER PROFILE REPOS - if tab=repositories add task for each repo', function(t){
   gs('iteles?tab=repositories', function(err, data) {
     var tasks = tasker(data);
         // console.log(tasks.length)
     var task_str = tasks.join(' ');
     t.ok(tasks.length > 20, '@iteles has ' + tasks.length + ' repos to crawl!')
     t.ok(task_str.indexOf('/iteles/Javascript-the-Good-Parts-notes') > -1, 'Task list contains Good Parts! ')
+    t.end();
+  })
+});
+
+test('TASKER ORG REPOS - if org has repos add a task for each repo', function(t){
+  var org = 'dwyl'
+  gs(org, function(err, data) {
+    // console.log(data);
+    var tasks = tasker(data);
+        // console.log(tasks.length)
+    // var task_str = tasks.join(' ');
+    t.ok(tasks.length > 20, org +' has ' + tasks.length + ' repos to crawl!')
+    t.end();
+  })
+});
+
+test('TASKER ORG - add task to scrape pages of people', function(t){
+  var org = 'dwyl'
+  gs(org, function(err, data) {
+    // console.log(data);
+    var tasks = tasker(data);
+        console.log(tasks)
+    var task_str = tasks.join(' ');
+    t.ok(task_str.indexOf('/orgs/dwyl/people') > -1, 'ORG: ' +org + ' has ' +data.pcount + ' people!')
     t.end();
   })
 });
