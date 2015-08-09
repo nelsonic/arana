@@ -103,7 +103,7 @@ test('Add list of FOLLOWING to Profile Record', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test.only('Add MULTI-PAGE list of FOLLOWING to Profile', function(t) {
+test('Add MULTI-PAGE list of FOLLOWING to Profile', function(t) {
   var url = '/Marak/following';
   gs(url, function(err, data) {
     recorder.add_people(data, 'following', function(res) {
@@ -118,10 +118,10 @@ test.only('Add MULTI-PAGE list of FOLLOWING to Profile', function(t) {
         gs(data.next_page, function(err2, data2) {
           recorder.add_people(data2, 'following', function(res2) {
             es.read(profile, function(res3){
-              console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
-              console.log(res3);
+              // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
+              // console.log(res3);
               var following = Object.keys(res3._source.following);
-              t.ok(following.length > 50, "✓ Following: " + following.length)
+              t.ok(following.length > 51, "✓ Following: " + following.length)
               t.end();
             }) // end read
           })
