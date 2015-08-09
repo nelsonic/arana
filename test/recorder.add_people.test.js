@@ -69,7 +69,7 @@ test('Add list followers to Profile with EXISTING Followers object', function(t)
         type:  res._type
       }
       es.read(profile, function(res2){
-        // console.log(res2);
+        console.log(res2);
         var followers = Object.keys(res2._source.followers);
         t.ok(followers.indexOf(fictional_follower) > -1, "✓ Follower added: " + fictional_follower)
         t.end();
