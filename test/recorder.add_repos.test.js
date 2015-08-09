@@ -61,7 +61,7 @@ test('Add repos to EXISTING Profile Record (created in add_people test)', functi
 }); // end test
 
 
-test.only('Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
+test('Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
   var url = 'dwyl';
   gs(url, function(err, data) { // initial page of repos
     console.log(data.next_page);
@@ -90,6 +90,34 @@ test.only('Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
           })  // end es.read
         }) // end SECOND recoder.add_repos
       }) // end SECOND gs
+    }) // end add_repos
+  }) // end scrape for followers list
+}); // end test
+
+test('Add THIRD PAGE of REPOS to EXISTING ORG Record', function(t) {
+  var url = 'dwyl?page=3';
+  gs(url, function(err, data) { // initial page of repos
+    // console.log(data.next_page);
+    recorder.add_repos(data, function(res) {
+      // console.log(res);
+      var org = {
+        id:    res._id,
+        index: res._index,
+        type:  res._type
+      }
+      es.read(org, function(res3) {
+        // console.log(" - - - - - - - - - - - - - - - res3:")
+        // console.log(res3._source.repos.length);
+        var r = res3._source.repos.filter(function(repo){
+          return repo.name === 'launch';
+        })
+        r = r[0];
+        console.log(r);
+        t.ok(res3._source.repos.length > 40, "✓ Repo count: "+res3._source.repos.length)
+        t.ok(res3._source.url === 'https://github.com/dwyl', "✓ Record url: "+res3._source.url)
+        t.ok(r.stars > 0, "✓ "+url +" has repo called " +r.name + " (as expected)" )
+        t.end();
+      })  // end es.read
     }) // end add_repos
   }) // end scrape for followers list
 }); // end test
