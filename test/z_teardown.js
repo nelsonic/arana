@@ -12,10 +12,11 @@ var record = { // fake record
 test( chalk.yellow.bgRed.bold(' - DROP ALL INDEXes so ES is Clean for Next Time - '), function (t) {
   DROP(record, function (res) {
     STATS(function (res) {
-      t.deepEqual(res._all.primaries, {}, chalk.green.bold("✓ ALL ES Indexes DELETED - Tests Pass. Standard."));
+      t.deepEqual(res._all.primaries, {}, chalk.green.bold("✓ ALL ES Indexes DELETED - Tests Pass. What's NEXT?"));
       t.end();
     });
   });
 });
 
-// delete all keys in Redis? FLUSHDB
+// Should we delete all keys in Redis? FLUSHDB
+// https://github.com/NodeRedis/node_redis/blob/6cae0b880fcecd45dab79a5f66d576b7bc86a570/test/test.js#L196
