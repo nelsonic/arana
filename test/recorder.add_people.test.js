@@ -135,7 +135,7 @@ test('Add MULTI-PAGE list of ORG PEOPLE to ORG Record', function(t) {
   var url = 'orgs/github/people';
   console.log(url)
   gs(url, function(err, data) {
-    console.log(data);
+    // console.log(data);
     recorder.add_people(data, 'people', function(res) {
 
       // console.log(res);

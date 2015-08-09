@@ -25,6 +25,27 @@ test('Scrape Profile and Save Record in ElasticSearch', function(t) {
   })
 });
 
+test('RECORDER save list of FOLLOWING to Profile', function(t) {
+  var url = '/pgte/following';
+  gs(url, function(err, data) {
+    recorder(data, function(res) {
+      var profile = {
+        id:    res._id,
+        index: res._index,
+        type:  res._type
+      }
+      console.log("next_page:" + data.next_page);
+      es.read(profile, function(res3){
+        // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
+        // console.log(res3);
+        var following = Object.keys(res3._source.following);
+        t.ok(following.length > 20, "✓ Following: " + following.length)
+        t.end();
+      }) // end read
+    }) // end add_followers
+  }) // end scrape for followers list
+}); // end test
+
 test('RECORDER save ORG page data', function(t) {
   var url = 'dwyl';
   gs(url, function(err, data){
