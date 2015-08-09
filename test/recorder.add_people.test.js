@@ -114,7 +114,7 @@ test('Add MULTI-PAGE list of FOLLOWING to Profile', function(t) {
         type:  res._type
       }
       console.log("next_page:" + data.next_page);
-      setTimeout(function(){
+      // setTimeout(function(){
         gs(data.next_page, function(err2, data2) {
           recorder.add_people(data2, 'following', function(res2) {
             es.read(profile, function(res3){
@@ -126,7 +126,36 @@ test('Add MULTI-PAGE list of FOLLOWING to Profile', function(t) {
             }) // end read
           })
         })
-      },1000)
+      // },1000)
+    }) // end add_followers
+  }) // end scrape for followers list
+}); // end test
+
+test('Add MULTI-PAGE list of ORG PEOPLE to ORG Record', function(t) {
+  var url = 'orgs/github/people';
+  console.log(url)
+  gs(url, function(err, data) {
+    console.log(data);
+    recorder.add_people(data, 'people', function(res) {
+
+      // console.log(res);
+      var org = {
+        id:    res._id,
+        index: res._index,
+        type:  res._type
+      }
+      console.log("next_page:" + data.next_page);
+      // setTimeout(function(){
+        gs(data.next_page, function(err2, data2) {
+          recorder.add_people(data2, 'people', function(res2) {
+            es.read(org, function(res3){
+              var people = Object.keys(res3._source.people);
+              t.ok(people.length > 20, "✓ ORG People: " + people.length)
+              t.end();
+            }) // end read
+          })
+        })
+      // },1000)
     }) // end add_followers
   }) // end scrape for followers list
 }); // end test
