@@ -50,6 +50,8 @@ test('RECORDER save ORG page data', function(t) {
   var url = 'dwyl';
   gs(url, function(err, data){
     t.ok(data.url === 'https://github.com/dwyl', "✓ Org scraped: "+url);
+    // console.log(' - - - - - - - - - - - - - - - - - - - - - - data:')
+    // console.log(data);
     recorder(data, function(res){
       // console.log(res);
       var org = {
