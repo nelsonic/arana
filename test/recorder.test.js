@@ -104,6 +104,58 @@ test('recorder.url_transform branch test', function(t){
   t.end();
 });
 
+test('RECORD save REPO', function(t) {
+  var url = 'dwyl/tudo';
+  gs(url, function(err, data) {
+    // console.log(data);
+    recorder(data, function(res) {
+      // console.log(res);
+      var repo = {
+        id:    res._id,
+        index: res._index,
+        type:  res._type
+      }
+      es.read(repo, function(res2) {
+        t.ok(res2._source.url.indexOf(url) > -1, "✓ Repo URL: "+res2._source.url)
+        t.ok(res2._source.stars > 0, "✓ "+url +" has " +res2._source.stars + " stars" )
+        t.end();
+      }) // end read
+    }) // end add_repos
+  }) // end scrape for followers list
+}); // end test
+
+test('RECORDER save (LIST OF) ISSUEs to REPO', function(t) {
+  var url = 'dwyl/start-here';
+
+  gs(url, function(err, data) {
+    // console.log(data);
+    recorder(data, function(res) {
+      // console.log(' - - - - - - - - - - - - - - - - - - - - - - res:')
+      // console.log(res);
+      t.ok(res._type === 'repo', "✓ " +url +" is: " + res._id)
+      url = 'dwyl/start-here/issues';
+      gs(url, function(err2, data2){
+        recorder(data2, function(res2){
+          // console.log(' - - - - - - - - - - - - - - - - - - - - - - res2:')
+          // console.log(res2);
+          var repo = {
+            id:    res._id,
+            index: res._index,
+            type:  res._type
+          }
+          es.read(repo, function(res3) {
+            // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
+            // console.log(res3);
+            t.ok(res3._source.issues.length > 0, "✓ Issue count: "+res3._source.issues.length)
+            t.ok(res3._source.closed > 9, "✓ "+url +" has " +res3._source.closed + " issues" )
+            t.end();
+          }) // end read
+        });
+      })
+    })
+  }) // end scrape for followers list
+}); // end test
+
 test('RECORDER save INDIVIDUAL ISSUE (save-all-the-things method!)', function(t) {
   var url = 'https://github.com/dwyl/learn-elasticsearch/issues/1';
   gs(url, function(err, data) {

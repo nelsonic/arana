@@ -21,7 +21,7 @@ test('Add followers crawled BEFORE Profile Record exists', function(t) {
       }
       es.read(profile, function(res2){
         var followers = Object.keys(res2._source.followers);
-        console.log(url + " >> " + followers.join(', '));
+        // console.log(url + " >> " + followers.join(', '));
         t.ok(followers.indexOf(fictional_follower) > -1, "✓ Follower added: " + fictional_follower)
         t.end();
       }) // end read
@@ -69,7 +69,7 @@ test('Add list followers to Profile with EXISTING Followers object', function(t)
         type:  res._type
       }
       es.read(profile, function(res2){
-        console.log(res2);
+        // console.log(res2);
         var followers = Object.keys(res2._source.followers);
         t.ok(followers.indexOf(fictional_follower) > -1, "✓ Follower added: " + fictional_follower)
         t.end();
@@ -113,27 +113,25 @@ test('Add MULTI-PAGE list of FOLLOWING to Profile', function(t) {
         index: res._index,
         type:  res._type
       }
-      console.log("next_page:" + data.next_page);
-      // setTimeout(function(){
-        gs(data.next_page, function(err2, data2) {
-          recorder.add_people(data2, 'following', function(res2) {
-            es.read(profile, function(res3){
-              // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
-              // console.log(res3);
-              var following = Object.keys(res3._source.following);
-              t.ok(following.length > 51, "✓ Following: " + following.length)
-              t.end();
-            }) // end read
-          })
+      // console.log("next_page:" + data.next_page);
+      gs(data.next_page, function(err2, data2) {
+        recorder.add_people(data2, 'following', function(res2) {
+          es.read(profile, function(res3){
+            // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
+            // console.log(res3);
+            var following = Object.keys(res3._source.following);
+            t.ok(following.length > 51, "✓ Following: " + following.length)
+            t.end();
+          }) // end read
         })
-      // },1000)
+      })
     }) // end add_followers
   }) // end scrape for followers list
 }); // end test
 
 test('Add MULTI-PAGE list of ORG PEOPLE to ORG Record', function(t) {
   var url = 'orgs/github/people';
-  console.log(url)
+  // console.log(url)
   gs(url, function(err, data) {
     // console.log(data);
     recorder.add_people(data, 'people', function(res) {
@@ -144,7 +142,7 @@ test('Add MULTI-PAGE list of ORG PEOPLE to ORG Record', function(t) {
         index: res._index,
         type:  res._type
       }
-      console.log("next_page:" + data.next_page);
+      // console.log("next_page:" + data.next_page);
       // setTimeout(function(){
         gs(data.next_page, function(err2, data2) {
           recorder.add_people(data2, 'people', function(res2) {
