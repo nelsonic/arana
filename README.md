@@ -2,6 +2,11 @@
 
 ***arana*** crawls **GitHub** webpages for ***delicious data***
 
+[![Build Status](https://travis-ci.org/nelsonic/arana.svg?branch=master)](https://travis-ci.org/nelsonic/arana)
+[![Code Climate](https://codeclimate.com/github/nelsonic/arana/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/arana)
+[![Test Coverage](https://codeclimate.com/github/nelsonic/arana/badges/coverage.svg)](https://codeclimate.com/github/nelsonic/arana/coverage)
+[![Dependency Status](https://david-dm.org/nelsonic/arana.svg)](https://david-dm.org/nelsonic/arana)
+[![devDependency Status](https://david-dm.org/nelsonic/arana/dev-status.svg)](https://david-dm.org/nelsonic/arana#info=devDependencies)
 ## Why?
 
 > ***Why not...***?!
