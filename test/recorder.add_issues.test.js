@@ -53,3 +53,35 @@ test('RECORDER save SECOND PAGE of ISSUEs to Repo Record', function(t) {
     }) // end add_issues
   }) // end scrape for followers list
 }); // end test
+
+
+test('Scrape the same page twice but do not duplicate data', function(t) {
+  var url = 'dwyl/hapi-auth-jwt2/issues';
+  gs(url, function(err, data) {
+    // console.log(data);
+    var issue_count = data.entries.length
+    t.ok(issue_count > 1, "✓ "+ url +" has " +issue_count + " issues!" )
+
+    recorder.add_issues(data, function(res) {
+      // crawl the same page again and ensure no dupes are inserted!
+      gs(url, function(err2, data2){
+        recorder(data2, function(res2){
+          // console.log(' - - - - - - - - - - - - - - - - - - - - - - res2:')
+          // console.log(res2);
+          var repo = {
+            id:    res2._id,
+            index: res2._index,
+            type:  res2._type
+          }
+          es.read(repo, function(res3) {
+            // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
+            // console.log(res3._source);
+            var count = res3._source.issues.length
+            t.ok(count === issue_count, "✓ "+ url +" (only) has " +count + " issues!" )
+            t.end();
+          }) // end read
+        })
+      })
+    }) // end add_issues
+  }) // end scrape for followers list
+}); // end test
