@@ -96,14 +96,6 @@ test('RECORD repos to EXISTING Profile Record', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('recorder.url_transform branch test', function(t){
-  var data = {url:'https://github.com/iteles'}
-  var url = recorder.url_transform(data);
-  t.ok(url === data.url, "✓ no transformation required")
-  // console.log(url);
-  t.end();
-});
-
 test('RECORD save REPO', function(t) {
   var url = 'dwyl/tudo';
   gs(url, function(err, data) {

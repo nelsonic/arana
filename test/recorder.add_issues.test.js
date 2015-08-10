@@ -5,14 +5,6 @@ var es       = require('esta');
 
 // Functional test for recorder.add_people method
 
-test('recorder.url_transform issue urls', function(t) {
-  var url = '/dwyl/tudo/issues?page=2&q=is%3Aissue+is%3Aopen'
-  var data = {url : url};
-  var transformed_url = recorder.url_transform(data);
-  t.ok(transformed_url === '/dwyl/tudo', "✓ " +url +" transformed to: "+transformed_url);
-  t.end();
-});
-
 test('RECORDER save List of ISSUEs to Repo Record', function(t) {
   var url = '/dwyl/time/issues';
   gs(url, function(err, data) {
