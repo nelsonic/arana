@@ -68,14 +68,27 @@ test('TASKER ORG - add task to scrape pages of people', function(t){
   })
 });
 
-test('TASKER REPO Stats - scrape people who star the repo', function(t){
+test('TASKER REPO: stargazers, issues, milestones & labels', function(t){
   var repo = 'dwyl/tudo'
   gs(repo, function(err, data) {
     // console.log(data);
     var tasks = tasker(data);
-    // console.log(tasks)
+    console.log(tasks)
     var task_str = tasks.join(' ');
     t.ok(task_str.indexOf('/stargazers') > -1, '✓ REPO: ' +repo + ' has ' +data.stars + ' stars!')
+    t.ok(task_str.indexOf('/issues') > -1, '✓ REPO: ' +repo + ' has ' +data.stars + ' stars!')
     t.end();
   })
 });
+
+// test('TASKER REPO Stats - scrape people who star the repo', function(t){
+//   var repo = 'dwyl/time'
+//   gs(repo, function(err, data) {
+//     // console.log(data);
+//     var tasks = tasker(data);
+//     console.log(tasks)
+//     var task_str = tasks.join(' ');
+//     t.ok(task_str.indexOf('/issues') > -1, '✓ REPO: ' +repo + ' has ' +data.stars + ' stars!')
+//     t.end();
+//   })
+// });

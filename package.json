@@ -1,6 +1,6 @@
 {
   "name": "arana",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "with great power comes great responsibility",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "aguid": "^1.0.3",
     "env2": "^1.0.5",
     "esta": "^4.2.0",
-    "github-scraper": "^3.0.10",
+    "github-scraper": "^3.0.12",
     "hiredis": "^0.4.0",
     "redis": "^0.12.1"
   },

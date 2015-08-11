@@ -3,7 +3,7 @@ var wq     = require('./lib/work_queue');
 var gs     = require('github-scraper')
 var recorder = require('./lib/recorder');
 var tasker = require('./lib/tasker')
-var concurrency_level = 3
+var concurrency_level = 10
 var task = '/iteles'+ " "+Date.now() + " " + Date.now()+1
 var url = task.split(' ')[0];
 wq.add(url, function(err, data) { // initial task
@@ -12,7 +12,7 @@ wq.add(url, function(err, data) { // initial task
     recorder(data, function(res){
       console.log(res);
       var tasks = tasker(data);
-      console.log(tasks);
+      console.log("Tasks:",tasks);
       var count = tasks.length
       tasks.map(function(t){
         wq.add(t, function(e, d){
@@ -37,8 +37,8 @@ function boot(){
       if(count < concurrency_level){
         // for(var i = concurrency_level - count; i >= 0; i--){
           worker(function(res){
-            console.log(res)
-            console.log(" - - - - - - - - end - - - - - - - ");
+            // console.log(res)
+            // console.log(" - - - - - - - - end - - - - - - - ");
           });
         // }
       }
