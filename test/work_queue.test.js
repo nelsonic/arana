@@ -2,12 +2,13 @@ var test = require('tape');
 var wq = require('../lib/work_queue');
 
 test('Add an item to the work queue', function(t){
-  var task = '/iteles '+ Date.now();
+  var task = '/iteles';
   wq.add(task, function(err, data) {
-    t.ok(data > 0, '✓ Task was added at a index: ' + data)
+    console.log(data);
+    t.ok(data === 0, '✓ Task was added at a index: ' + data)
   })
   wq.add(task, function(err, data) {
-    t.ok(data > 0, '✓ Task was added at a index: ' + data)
+    t.ok(data === 0, '✓ Task was added at a index: ' + data)
     t.end();
   })
 });
