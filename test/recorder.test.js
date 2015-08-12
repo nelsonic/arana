@@ -36,7 +36,7 @@ test(file+'RECORDER save list of FOLLOWING to Profile', function(t) {
         index: res._index,
         type:  res._type
       }
-      console.log("next_page:" + data.next_page);
+      // console.log("next_page:" + data.next_page);
       es.read(profile, function(res3){
         // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
         // console.log(res3);

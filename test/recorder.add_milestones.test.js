@@ -42,8 +42,8 @@ test(file+'RECORDER save MILESTONES to record again (in-direct)', function(t) {
         type:  res2._type
       }
       es.read(repo, function(res3) {
-        console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
-        console.log(res3._source);
+        // console.log(' - - - - - - - - - - - - - - - - - - - - - - res3:')
+        // console.log(res3._source);
         var count = res3._source.milestones.length
         t.ok(count > 1, "✓ "+ res3._source.url +" has " +count + " milestones" )
         t.end();

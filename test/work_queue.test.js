@@ -68,7 +68,7 @@ test(file+'Finish task (remove from "in-progress" and add to history)', function
     t.ok(task.indexOf('/sulu') > -1, '✓ Next task is: ' + task)
     // var url = task.split(' ')[0];
     wq.finish(task, function(err2, data2){
-      // console.log(err2, data2)
+      console.log(err2, data2)
       t.end()
     })
   })
@@ -78,9 +78,32 @@ test(file+'Get history for url', function(t){
   wq.history('/sulu', function(err, data){
     data = parseInt(data, 10);
     var d = new Date(data)
-    // console.log(data +  ' >> ' +  d);
+    console.log(data +  ' >> ' +  d);
     t.ok(data < Date.now(), "✓ history?");
     t.end();
+  })
+})
+
+test(file+'Test scraper frequency by setting history to 24h+10sec ago!', function(t){
+  var url = '/unicorn';
+  var DAY = 24 * 60 * 60 * 1000 + 10000; // 24 hours + 10 seconds
+  // console.log(DAY);
+  var history = ['history', Date.now() - DAY, url]
+  // console.log(history);
+  wq.redisClient.zadd(history, function(err, data) {
+    // console.log(err, data)
+    wq.history(url, function(err2, data2){
+      // console.log(err2, data2)
+      var timestamp = parseInt(data2, 10);
+      var d = new Date(timestamp)
+      // console.log(data2 +  ' >> ' +  d);
+      t.ok(timestamp < Date.now(), "✓ history? " + timestamp + " < " + Date.now());
+
+      wq.add(url, function(err3, data3){
+              // console.log(err3, data3);
+        t.end();
+      })
+    })
   })
 })
 

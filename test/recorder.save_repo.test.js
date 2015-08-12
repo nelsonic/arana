@@ -19,8 +19,8 @@ test(file+'RECORDER save repository (save-all-the-things method!)', function(t) 
         type:  res._type
       }
       es.read(repo, function(res2) {
-        console.log(' - - - - - - - - - - - - - - - - - - - - - - res2:')
-        console.log(res2);
+        // console.log(' - - - - - - - - - - - - - - - - - - - - - - res2:')
+        // console.log(res2);
         t.ok(res2._source.url.indexOf(url) > -1, "✓ Repo URL: "+res2._source.url)
         t.ok(res2._source.stars > 0, "✓ "+url +" has " +res2._source.stars + " stars" )
         t.end();
