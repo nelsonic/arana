@@ -60,20 +60,29 @@ test(file+'There should be 2 tasks in the in-progress queue)',function(t){
   })
 })
 
-
 test(file+'Finish task (remove from "in-progress" and add to history)', function(t){
   wq.next(function(err, task) {
-    console.log(err, task)
+    // console.log(err, task)
     t.ok(err === null, "no error retrieving task from work queue")
-    console.log("Next Task: " +task);
+    // console.log("Next Task: " +task);
     t.ok(task.indexOf('/sulu') > -1, '✓ Next task is: ' + task)
     // var url = task.split(' ')[0];
     wq.finish(task, function(err2, data2){
-      console.log(err2, data2)
+      // console.log(err2, data2)
       t.end()
     })
   })
 });
+
+test(file+'Get history for url', function(t){
+  wq.history('/sulu', function(err, data){
+    data = parseInt(data, 10);
+    var d = new Date(data)
+    // console.log(data +  ' >> ' +  d);
+    t.ok(data < Date.now(), "✓ history?");
+    t.end();
+  })
+})
 
 test(file+'Close redis connection', function(t){
   wq.redisClient.end();
