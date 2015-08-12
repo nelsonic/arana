@@ -1,8 +1,10 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test   = require('tape');
 var tasker = require('../lib/tasker');
 var gs     = require('github-scraper');
 
-test('TASKER PROFILE - list of next tasks after scraping a profile', function(t){
+test(file+'TASKER PROFILE - list of next tasks after scraping a profile', function(t){
   gs('iteles', function(err, data){
     var tasks = tasker(data);
     // console.log(tasks)
@@ -25,7 +27,7 @@ test('TASKER PROFILE - list of next tasks after scraping a profile', function(t)
   })
 });
 
-test('TASKER NEXT_PAGE - if the object has a next_page property', function(t){
+test(file+'TASKER NEXT_PAGE - if the object has a next_page property', function(t){
   gs('alanshaw/followers', function(err, data){
     var tasks = tasker(data);
     t.ok(tasks[0].indexOf('?page=2') > -1, '✓ next_page task: ' + tasks[0])
@@ -33,7 +35,7 @@ test('TASKER NEXT_PAGE - if the object has a next_page property', function(t){
   })
 });
 
-test('TASKER PROFILE REPOS - if tab=repositories add task for each repo', function(t){
+test(file+'TASKER PROFILE REPOS - if tab=repositories add task for each repo', function(t){
   gs('iteles?tab=repositories', function(err, data) {
     var tasks = tasker(data);
         // console.log(tasks.length)
@@ -44,7 +46,7 @@ test('TASKER PROFILE REPOS - if tab=repositories add task for each repo', functi
   })
 });
 
-test('TASKER ORG REPOS - if org has repos add a task for each repo', function(t){
+test(file+'TASKER ORG REPOS - if org has repos add a task for each repo', function(t){
   var org = 'dwyl'
   gs(org, function(err, data) {
     // console.log(data);
@@ -56,7 +58,7 @@ test('TASKER ORG REPOS - if org has repos add a task for each repo', function(t)
   })
 });
 
-test('TASKER ORG - add task to scrape pages of people', function(t){
+test(file+'TASKER ORG - add task to scrape pages of people', function(t){
   var org = 'dwyl'
   gs(org, function(err, data) {
     // console.log(data);
@@ -68,7 +70,7 @@ test('TASKER ORG - add task to scrape pages of people', function(t){
   })
 });
 
-test('TASKER REPO: stargazers, issues, milestones & labels', function(t){
+test(file+'TASKER REPO: stargazers, issues, milestones & labels', function(t){
   var repo = 'dwyl/tudo'
   gs(repo, function(err, data) {
     // console.log(data);
@@ -81,7 +83,7 @@ test('TASKER REPO: stargazers, issues, milestones & labels', function(t){
   })
 });
 
-// test('TASKER REPO Stats - scrape people who star the repo', function(t){
+// test(file+'TASKER REPO Stats - scrape people who star the repo', function(t){
 //   var repo = 'dwyl/time'
 //   gs(repo, function(err, data) {
 //     // console.log(data);

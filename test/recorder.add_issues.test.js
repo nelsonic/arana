@@ -1,3 +1,5 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test     = require('tape');
 var recorder = require('../lib/recorder');
 var gs       = require('github-scraper');
@@ -5,7 +7,7 @@ var es       = require('esta');
 
 // Functional test for recorder.add_people method
 
-test('RECORDER save List of ISSUEs to Repo Record', function(t) {
+test(file+'RECORDER save List of ISSUEs to Repo Record', function(t) {
   var url = '/dwyl/time/issues';
   gs(url, function(err, data) {
     // console.log(data);
@@ -27,7 +29,7 @@ test('RECORDER save List of ISSUEs to Repo Record', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('RECORDER save SECOND PAGE of ISSUEs to Repo Record', function(t) {
+test(file+'RECORDER save SECOND PAGE of ISSUEs to Repo Record', function(t) {
   var url = 'https://github.com/dwyl/time/issues?page=2';
   gs(url, function(err, data) {
     // console.log(data);
@@ -55,7 +57,7 @@ test('RECORDER save SECOND PAGE of ISSUEs to Repo Record', function(t) {
 }); // end test
 
 
-test('Scrape the same page twice but do not duplicate data', function(t) {
+test(file+'Scrape the same page twice but do not duplicate data', function(t) {
   var url = 'dwyl/hapi-auth-jwt2/issues';
   gs(url, function(err, data) {
     // console.log(data);

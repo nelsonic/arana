@@ -1,8 +1,10 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test = require('tape');
 var wq = require('../lib/work_queue');
 var decache = require('decache');
 
-test('Add (3) items to the work queue (we need these for later)', function(t){
+test(file+'Add (3) items to the work queue (we need these for later)', function(t){
   var task = '/jim';
   wq.add(task, function(err, data) {
     t.ok(data >= 0, '✓ Task ' +task +' was added at a index: ' + data)
@@ -22,7 +24,7 @@ test('Add (3) items to the work queue (we need these for later)', function(t){
   })
 });
 
-test('There should be 3 tasks in the work-queue right now',function(t){
+test(file+'There should be 3 tasks in the work-queue right now',function(t){
   var q = 'work-queue'
   wq.count(q, function(err, data){
     // console.log(data)
@@ -31,7 +33,7 @@ test('There should be 3 tasks in the work-queue right now',function(t){
   })
 })
 
-test('Fetch the next task from the work queue', function(t){
+test(file+'Fetch the next task from the work queue', function(t){
   wq.next(function(err, data) {
     // console.log(err, data)
     // console.log("Next Task: " +data);
@@ -41,7 +43,7 @@ test('Fetch the next task from the work queue', function(t){
   })
 });
 
-test('There should be 2 tasks in the in-progress queue)',function(t){
+test(file+'There should be 2 tasks in the in-progress queue)',function(t){
 
   wq.next(function(err, data) {
     t.ok(data.indexOf('/spock') > -1, '✓ Next task is: ' + data)
@@ -59,7 +61,7 @@ test('There should be 2 tasks in the in-progress queue)',function(t){
 })
 
 
-test('Finish task (remove from "in-progress" and add to history)', function(t){
+test(file+'Finish task (remove from "in-progress" and add to history)', function(t){
   wq.next(function(err, task) {
     console.log(err, task)
     t.ok(err === null, "no error retrieving task from work queue")
@@ -73,7 +75,7 @@ test('Finish task (remove from "in-progress" and add to history)', function(t){
   })
 });
 
-test('Close redis connection', function(t){
+test(file+'Close redis connection', function(t){
   wq.redisClient.end();
   var connected = wq.redisClient.connected
   t.ok(connected === false, "✓ Connected to Redis? "+connected +" (as expected)");

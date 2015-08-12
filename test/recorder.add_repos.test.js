@@ -1,3 +1,5 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test     = require('tape');
 var recorder = require('../lib/recorder');
 var gs       = require('github-scraper');
@@ -5,7 +7,7 @@ var es       = require('esta');
 
 // Functional test for recorder.add_people method
 
-test('Add repos crawled BEFORE Profile Record exists', function(t) {
+test(file+'Add repos crawled BEFORE Profile Record exists', function(t) {
   var url = 'rjmk?tab=repositories';
   gs(url, function(err, data) {
     // console.log(data);
@@ -24,7 +26,7 @@ test('Add repos crawled BEFORE Profile Record exists', function(t) {
       })
       r = r[0];
       // console.log(r);
-      t.ok(res2._source.url === 'https://github.com/rjmk', "✓ Profile: "+res2._source.url)
+      t.ok(res2._source.url === '/rjmk', "✓ Profile: "+res2._source.url)
       t.ok(r.stars > 0, "✓ "+url +" has " +res2._source.repos.length + " repos" )
       t.end();
       }) // end read
@@ -33,7 +35,7 @@ test('Add repos crawled BEFORE Profile Record exists', function(t) {
 }); // end test
 
 
-test('Add repos to EXISTING Profile Record (created in add_people test)', function(t) {
+test(file+'Add repos to EXISTING Profile Record (created in add_people test)', function(t) {
   var url = 'iteles?tab=repositories';
   gs(url, function(err, data) {
     // console.log(data);
@@ -52,7 +54,7 @@ test('Add repos to EXISTING Profile Record (created in add_people test)', functi
       })
       r = r[0];
       // console.log(r);
-      t.ok(res2._source.url === 'https://github.com/iteles', "✓ Profile: "+res2._source.url)
+      t.ok(res2._source.url === '/iteles', "✓ Profile: "+res2._source.url)
       t.ok(r.stars > 0, "✓ "+url +" has " +res2._source.repos.length + " repos" )
       t.end();
       }) // end read
@@ -61,7 +63,7 @@ test('Add repos to EXISTING Profile Record (created in add_people test)', functi
 }); // end test
 
 
-test('Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
+test(file+'Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
   var url = 'dwyl';
   gs(url, function(err, data) { // initial page of repos
     console.log(data.next_page);
@@ -84,7 +86,7 @@ test('Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
             r = r[0];
             console.log(r);
             t.ok(res3._source.repos.length > 20, "✓  "+url + "(org) has multiple pages of repos!")
-            t.ok(res3._source.url === 'https://github.com/dwyl', "✓ Record url: "+res3._source.url)
+            t.ok(res3._source.url === '/dwyl', "✓ Record url: "+res3._source.url)
             t.ok(r.stars > 0, "✓ "+url +" has repo called " +r.name + " (as expected)" )
             t.end();
           })  // end es.read
@@ -94,7 +96,7 @@ test('Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('Add THIRD PAGE of REPOS to EXISTING ORG Record', function(t) {
+test(file+'Add THIRD PAGE of REPOS to EXISTING ORG Record', function(t) {
   var url = 'dwyl?page=3';
   gs(url, function(err, data) { // initial page of repos
     // console.log(data.next_page);
@@ -114,7 +116,7 @@ test('Add THIRD PAGE of REPOS to EXISTING ORG Record', function(t) {
         r = r[0];
         console.log(r);
         t.ok(res3._source.repos.length > 40, "✓ Repo count: "+res3._source.repos.length)
-        t.ok(res3._source.url === 'https://github.com/dwyl', "✓ Record url: "+res3._source.url)
+        t.ok(res3._source.url === '/dwyl', "✓ Record url: "+res3._source.url)
         t.ok(r.stars > 0, "✓ "+url +" has repo called " +r.name + " (as expected)" )
         t.end();
       })  // end es.read

@@ -1,3 +1,5 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test     = require('tape');
 var recorder = require('../lib/recorder');
 var gs       = require('github-scraper');
@@ -5,7 +7,7 @@ var es       = require('esta');
 
 // Functional test for recorder.add_people method
 
-test('RECORDER save List of LABELS to Repo Record', function(t) {
+test(file+'RECORDER save List of LABELS to Repo Record', function(t) {
   var url = 'dwyl/image-uploads/labels';
   gs(url, function(err, data) {
     // console.log(data);
@@ -27,7 +29,7 @@ test('RECORDER save List of LABELS to Repo Record', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('RECORDER save Labels to record again (in-direct)', function(t) {
+test(file+'RECORDER save Labels to record again (in-direct)', function(t) {
   var url = 'https://github.com/dwyl/image-uploads/labels';
   gs(url, function(err, data) {
     console.log(data);

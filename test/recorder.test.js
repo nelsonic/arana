@@ -1,9 +1,11 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test     = require('tape');
 var recorder = require('../lib/recorder');
 var gs       = require('github-scraper');
 var es       = require('esta');
 
-test('Scrape Profile and Save Record in ElasticSearch', function(t) {
+test(file+'Scrape Profile and Save Record in ElasticSearch', function(t) {
   var username = 'iteles';
   gs(username, function(err, data){
     t.ok(data.url === 'https://github.com/iteles', "✓ Profile scraped: "+username);
@@ -25,7 +27,7 @@ test('Scrape Profile and Save Record in ElasticSearch', function(t) {
   })
 });
 
-test('RECORDER save list of FOLLOWING to Profile', function(t) {
+test(file+'RECORDER save list of FOLLOWING to Profile', function(t) {
   var url = '/pgte/following';
   gs(url, function(err, data) {
     recorder(data, function(res) {
@@ -46,7 +48,7 @@ test('RECORDER save list of FOLLOWING to Profile', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('RECORDER save ORG page data', function(t) {
+test(file+'RECORDER save ORG page data', function(t) {
   var url = 'dwyl';
   gs(url, function(err, data){
     t.ok(data.url === 'https://github.com/dwyl', "✓ Org scraped: "+url);
@@ -69,7 +71,7 @@ test('RECORDER save ORG page data', function(t) {
   })
 });
 
-test('RECORD repos to EXISTING Profile Record', function(t) {
+test(file+'RECORD repos to EXISTING Profile Record', function(t) {
   var url = 'iteles?tab=repositories';
   gs(url, function(err, data) {
     // console.log(data);
@@ -88,7 +90,7 @@ test('RECORD repos to EXISTING Profile Record', function(t) {
       })
       r = r[0];
       // console.log(r);
-      t.ok(res2._source.url === 'https://github.com/iteles', "✓ Profile: "+res2._source.url)
+      t.ok(res2._source.url === '/iteles', "✓ Profile: "+res2._source.url)
       t.ok(r.stars > 0, "✓ "+url +" has " +res2._source.repos.length + " repos" )
       t.end();
       }) // end read
@@ -96,7 +98,7 @@ test('RECORD repos to EXISTING Profile Record', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('RECORD save REPO', function(t) {
+test(file+'RECORD save REPO', function(t) {
   var url = 'dwyl/tudo';
   gs(url, function(err, data) {
     // console.log(data);
@@ -116,7 +118,7 @@ test('RECORD save REPO', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('RECORDER save (LIST OF) ISSUEs to REPO', function(t) {
+test(file+'RECORDER save (LIST OF) ISSUEs to REPO', function(t) {
   var url = 'dwyl/start-here';
 
   gs(url, function(err, data) {
@@ -148,7 +150,7 @@ test('RECORDER save (LIST OF) ISSUEs to REPO', function(t) {
   }) // end scrape for followers list
 }); // end test
 
-test('RECORDER save INDIVIDUAL ISSUE (save-all-the-things method!)', function(t) {
+test(file+'RECORDER save INDIVIDUAL ISSUE (save-all-the-things method!)', function(t) {
   var url = 'https://github.com/dwyl/learn-elasticsearch/issues/1';
   gs(url, function(err, data) {
     // console.log(data);
@@ -168,7 +170,7 @@ test('RECORDER save INDIVIDUAL ISSUE (save-all-the-things method!)', function(t)
           return comment.id === 'issuecomment-61982021';
         })
         var comment = issue[0].body;
-        t.ok(res2._source.url.indexOf(url) > -1, "✓ Issue URL: "+res2._source.url)
+        t.ok(res2._source.url === '/dwyl/learn-elasticsearch', "✓ Issue URL: "+res2._source.url)
         t.ok(comment.match('reply from Peter'), "✓ Comment: "+comment)
         t.ok(res2._source.entries.length > 0, "✓ "+url +" has " +res2._source.entries.length + " comments" )
         t.end();

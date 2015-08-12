@@ -1,3 +1,5 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test     = require('tape');
 var recorder = require('../lib/recorder');
 var gs       = require('github-scraper');

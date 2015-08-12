@@ -1,3 +1,5 @@
+var dir      = __dirname.split('/')[__dirname.split('/').length-1];
+var file     = dir + __filename.replace(__dirname, '') + " > ";
 var test     = require('tape');
 var recorder = require('../lib/recorder');
 var gs       = require('github-scraper');
@@ -5,7 +7,7 @@ var es       = require('esta');
 
 // Functional test for recorder.add_people method
 
-test('RECORDER save repository (save-all-the-things method!)', function(t) {
+test(file+'RECORDER save repository (save-all-the-things method!)', function(t) {
   var url = 'nelsonic/practical-js-tdd';
   gs(url, function(err, data) {
     // console.log(data);
