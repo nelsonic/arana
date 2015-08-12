@@ -15,13 +15,13 @@ function boot(){
       if(count < concurrency_level){
         // for(var i = concurrency_level - count; i >= 0; i--){
           worker(function(res){
-            console.log(res)
-            console.log(" - - - - - - - - end - - - - - - - ");
+            // console.log(res)
+            // console.log(" - - - - - - - - end - - - - - - - ");
           });
         // }
       }
     })
-  },300);
+  },100);
 }
 
 wq.add(url, function(err, data) { // initial task
