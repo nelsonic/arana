@@ -81,11 +81,10 @@ test(file+'url_transform strips milestones from repo url', function(t){
 });
 
 
-test(file+'url_transform swaps undefined for tj', function(t){
+test(file+'github-scraper url_validator rejects url containing "undefined"', function(t){
   var url = 'https://github.com/undefined/followers'
-  var data = {url:url}
-  data = url_transform(data);
-  t.ok(data.url === '/tj/followers', "✓ url_transform: " +url +" >> "+data.url)
-  // console.log(url);
-  t.end();
+  url_validator(url, function(err){
+    t.ok(err === 400, "✓ url_validator: " +url +" >> " + err)
+    t.end();
+  })
 });
