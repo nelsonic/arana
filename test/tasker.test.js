@@ -4,6 +4,12 @@ var test   = require('tape');
 var tasker = require('../lib/tasker');
 var gs     = require('github-scraper');
 
+test(file+'TASKER no url set', function(t){
+  var tasks = tasker({}); // empty data object (no url)
+  t.ok(tasks.length === 0, '✓ no tasks when no url on data object')
+  t.end();
+});
+
 test(file+'TASKER PROFILE - list of next tasks after scraping a profile', function(t){
   gs('iteles', function(err, data){
     var tasks = tasker(data);

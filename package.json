@@ -29,9 +29,10 @@
   "homepage": "https://github.com/nelsonic/arana#readme",
   "dependencies": {
     "aguid": "^1.0.3",
+    "chalk": "^1.1.0",
     "env2": "^1.0.5",
     "esta": "^4.2.0",
-    "github-scraper": "^3.0.14",
+    "github-scraper": "^3.0.18",
     "hiredis": "^0.4.0",
     "redis": "^0.12.1"
   },
