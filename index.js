@@ -16,7 +16,7 @@ var url = task.split(' ')[0];
       if(count < concurrency_level){
         // for(var i = concurrency_level - count; i >= 0; i--){
           worker(function(res){
-            console.log(res)
+            // console.log(res)
             // console.log(" - - - - - - - - end - - - - - - - ");
           });
         // }

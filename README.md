@@ -25,7 +25,9 @@ A spider.
 ### Work Queue
 
 A list of the tasks that need to be performed next.
-A "task" is a **url** and the **timestamp** the task was added to the work queue.
+The work-queue is stored as a **Sorted Set** where the **timestamp** (when the task was added to the work-queue) is the "**score**" and the value is the  **url** that needs to be crawled.  
+
+![redis-work-queue](http://i.imgur.com/gzstALH.png)
 
 ```js
 [
@@ -35,8 +37,7 @@ A "task" is a **url** and the **timestamp** the task was added to the work queue
 ]
 ```
 
-We are storing the Work Queue as a *simple* list because we don't ***need***
-anything *fancy*!
+See: http://redis.io/topics/data-types
 
 
 
