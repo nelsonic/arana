@@ -91,8 +91,11 @@ test(file+'TASKER ORG - extract tasks from second page of repos', function(t){
 test(file+'TASKER ORG - No People Task for Org without Public People', function(t){
   var url = '/pandajs'
   gs(url, function(err, data) {
-    // console.log(data);
+    console.log(' - - - - - - - - - - data:')
+    console.log(data);
     var tasks = tasker(data);
+    console.log(' - - - - - - - - - - tasks:')
+    console.log(tasks);
     var task_str = tasks.join(' ');
     t.ok(task_str.indexOf('people') === -1, '✓ ORG: ' +url + ' has ' +data.pcount + ' people!')
     t.end();
