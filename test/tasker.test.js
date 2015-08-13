@@ -78,6 +78,28 @@ test(file+'TASKER ORG - add task to scrape pages of people', function(t){
   })
 });
 
+test(file+'TASKER ORG - extract tasks from second page of repos', function(t){
+  var url = '/dwyl?page=2'
+  gs(url, function(err, data) {
+    // console.log(data);
+    var tasks = tasker(data);
+    t.ok(tasks.length > 0, '✓ ORG: ' +url + ' has ' +data.pcount + ' people!')
+    t.end();
+  })
+});
+
+test(file+'TASKER ORG - No People Task for Org without Public People', function(t){
+  var url = '/pandajs'
+  gs(url, function(err, data) {
+    // console.log(data);
+    var tasks = tasker(data);
+    var task_str = tasks.join(' ');
+    t.ok(task_str.indexOf('people') === -1, '✓ ORG: ' +url + ' has ' +data.pcount + ' people!')
+    t.end();
+  })
+});
+
+
 test(file+'TASKER REPO: stargazers, issues, milestones & labels', function(t){
   var repo = 'dwyl/tudo'
   gs(repo, function(err, data) {

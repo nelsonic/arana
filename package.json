@@ -1,6 +1,6 @@
 {
   "name": "arana",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "with great power comes great responsibility",
   "main": "index.js",
   "scripts": {
