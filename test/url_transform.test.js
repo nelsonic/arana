@@ -70,3 +70,22 @@ test(file+'url_transform strips milestones from repo url', function(t){
   // console.log(url);
   t.end();
 });
+
+test(file+'url_transform strips milestones from repo url', function(t){
+  var url = 'https://github.com/dwyl/tudo/milestones'
+  var data = {url:url}
+  data = url_transform(data);
+  t.ok(data.url === '/dwyl/tudo', "✓ url_transform: " +url +" >> "+data.url)
+  // console.log(url);
+  t.end();
+});
+
+
+test(file+'url_transform swaps undefined for tj', function(t){
+  var url = 'https://github.com/undefined/followers'
+  var data = {url:url}
+  data = url_transform(data);
+  t.ok(data.url === '/tj/followers', "✓ url_transform: " +url +" >> "+data.url)
+  // console.log(url);
+  t.end();
+});
