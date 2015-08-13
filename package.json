@@ -1,6 +1,6 @@
 {
   "name": "arana",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "with great power comes great responsibility",
   "main": "index.js",
   "scripts": {
@@ -32,12 +32,11 @@
     "chalk": "^1.1.0",
     "env2": "^1.0.5",
     "esta": "^4.2.0",
-    "github-scraper": "^3.0.18",
+    "github-scraper": "^3.0.19",
     "hiredis": "^0.4.0",
     "redis": "^0.12.1"
   },
   "devDependencies": {
-    "chalk": "^1.1.0",
     "codeclimate-test-reporter": "0.1.0",
     "decache": "^3.0.3",
     "istanbul": "^0.3.17",
