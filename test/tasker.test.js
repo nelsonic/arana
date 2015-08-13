@@ -30,7 +30,9 @@ test(file+'TASKER PROFILE - list of next tasks after scraping a profile', functi
 test(file+'TASKER NEXT_PAGE - if the object has a next_page property', function(t){
   gs('alanshaw/followers', function(err, data){
     var tasks = tasker(data);
-    t.ok(tasks[0].indexOf('?page=2') > -1, '✓ next_page task: ' + tasks[0])
+    console.log(tasks);
+    var task_str = tasks.join(' ');
+    t.ok(task_str.indexOf('?page=2') > -1, '✓ next_page task: ' + data.next_page)
     t.end();
   })
 });
@@ -83,14 +85,37 @@ test(file+'TASKER REPO: stargazers, issues, milestones & labels', function(t){
   })
 });
 
-// test(file+'TASKER REPO Stats - scrape people who star the repo', function(t){
-//   var repo = 'dwyl/time'
-//   gs(repo, function(err, data) {
-//     // console.log(data);
-//     var tasks = tasker(data);
-//     console.log(tasks)
-//     var task_str = tasks.join(' ');
-//     t.ok(task_str.indexOf('/issues') > -1, '✓ REPO: ' +repo + ' has ' +data.stars + ' stars!')
-//     t.end();
-//   })
-// });
+test(file+'TASKER REPO Stats - scrape people who star the repo', function(t){
+  var repo = 'dwyl/time'
+  gs(repo, function(err, data) {
+    // console.log(data);
+    var tasks = tasker(data);
+    console.log(tasks)
+    var task_str = tasks.join(' ');
+    t.ok(task_str.indexOf('/issues') > -1, '✓ REPO: ' +repo + ' has ' +data.stars + ' stars!')
+    t.end();
+  })
+});
+
+test(file+'TASKER Following lists all people as tasks', function(t){
+  var url = 'rjmk/following'
+  gs(url, function(err, data) {
+    // console.log(data);
+    var tasks = tasker(data);
+    console.log(tasks)
+    var task_str = tasks.join(' ');
+    t.ok(task_str.indexOf('anniva') > -1, '✓ Page: ' +url + ' has ' +data.stars + ' stars!')
+    t.end();
+  })
+});
+
+test(file+'TASKER Followers lists all people as tasks', function(t){
+  var url = 'rjmk/followers'
+  gs(url, function(err, data) {
+    var tasks = tasker(data); // sync
+    console.log(tasks)
+    var task_str = tasks.join(' ');
+    t.ok(task_str.indexOf('iteles') > -1, '✓ '+url + ' has @iteles as follower!')
+    t.end();
+  })
+});
