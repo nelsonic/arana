@@ -46,7 +46,7 @@ sudo service elasticsearch start
 # redis-server
 
 # install redis from apt
-sudo apt-get install redis-server
+sudo apt-get install redis-server redis-tools -y
 
 # disable init.d from running redis
 sudo update-rc.d redis-server disable
