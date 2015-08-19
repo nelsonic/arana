@@ -37,13 +37,32 @@ sudo service elasticsearch start
 # curl http://localhost:9200
 
 # install Redis following http://redis.io/topics/quickstart
-wget http://download.redis.io/redis-stable.tar.gz
-tar xvzf redis-stable.tar.gz
-cd redis-stable
-# sudo make me a sandiwch --> https://xkcd.com/149/
-sudo make
-sudo make install
-redis-server
+# wget http://download.redis.io/redis-stable.tar.gz
+# tar xvzf redis-stable.tar.gz
+# cd redis-stable
+# # sudo make me a sandiwch --> https://xkcd.com/149/
+# sudo make
+# sudo make install
+# redis-server
+
+# install redis from apt
+sudo apt-get install redis-server
+
+# disable init.d from running redis
+sudo update-rc.d redis-server disable
+
+# Using Upstart to Automatically Start Redis
+sudo -i
+git clone https://gist.github.com/c0b11f688b365d941a8a
+mv ./c0b11f688b365d941a8a/redis-server.conf /etc/init/redis-server.conf
+rm -rf ./c0b11f688b365d941a8a
+
+# Start Redis for the first time:
+sudo start redis-server
+
+# check that node.js can access redis db
+git clone https://github.com/dwyl/learn-redis.git && cd learn-redis
+npm install && npm test
 
 SCRIPT
 
