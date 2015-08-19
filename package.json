@@ -30,7 +30,7 @@
   "dependencies": {
     "aguid": "^1.0.3",
     "chalk": "^1.1.0",
-    "env2": "^1.0.5",
+    "env2": "^2.0.1",
     "esta": "^4.2.0",
     "github-scraper": "^3.0.19",
     "hiredis": "^0.4.0",
@@ -39,13 +39,13 @@
   "devDependencies": {
     "codeclimate-test-reporter": "0.1.0",
     "decache": "^3.0.3",
-    "istanbul": "^0.3.17",
+    "istanbul": "^0.3.18",
     "jsdoc": "^3.3.2",
     "jshint": "^2.8.0",
-    "nodemon": "^1.4.0",
+    "nodemon": "^1.4.1",
     "pre-commit": "1.1.1",
     "tap-spec": "^4.0.2",
-    "tape": "^4.0.3"
+    "tape": "^4.2.0"
   },
   "pre-commit": [
     "jshint",
