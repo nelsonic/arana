@@ -37,6 +37,3 @@ test( chalk.yellow.bgRed.bold(' - FLUSHDB  so REDIS is Clean for Next Time - '),
   // })
 
 });
-
-// Should we delete all keys in Redis? FLUSHDB
-// https://github.com/NodeRedis/node_redis/blob/6cae0b880fcecd45dab79a5f66d576b7bc86a570/test/test.js#L196
