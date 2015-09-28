@@ -97,7 +97,7 @@ test(file+'Add SECOND PAGE of REPOS to EXISTING ORG Record', function(t) {
 }); // end test
 
 test(file+'Add THIRD PAGE of REPOS to EXISTING ORG Record', function(t) {
-  var url = 'dwyl?page=3';
+  var url = 'dwyl?page=4';
   gs(url, function(err, data) { // initial page of repos
     // console.log(data.next_page);
     recorder.add_repos(data, function(res) {
@@ -111,7 +111,7 @@ test(file+'Add THIRD PAGE of REPOS to EXISTING ORG Record', function(t) {
         // console.log(" - - - - - - - - - - - - - - - res3:")
         // console.log(res3._source.repos.length);
         var r = res3._source.repos.filter(function(repo){
-          return repo.name === 'launch';
+          return repo.name === 'english-words';
         })
         r = r[0];
         console.log(r);
