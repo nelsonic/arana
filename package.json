@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "docs": "./node_modules/jsdoc/jsdoc.js ./lib/*.js",
-    "fast": "./node_modules/tape/bin/tape ./test/*.js",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
+    "test": "./node_modules/tape/bin/tape ./test/*.js",
+    "cov": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && ./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc --exclude-path .gitignore .",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=ba9d8113ee1e5f6b87dabb2fd8fe3a413e5160f0e07cd0058cf00d1e697c3db2 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
