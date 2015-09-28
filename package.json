@@ -11,7 +11,8 @@
     "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc --exclude-path .gitignore .",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=ba9d8113ee1e5f6b87dabb2fd8fe3a413e5160f0e07cd0058cf00d1e697c3db2 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "open-coverage": "open ./test/coverage.html",
-    "spec": "node ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js"
+    "spec": "node ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -29,22 +30,22 @@
   "homepage": "https://github.com/nelsonic/arana#readme",
   "dependencies": {
     "aguid": "^1.0.3",
-    "chalk": "^1.1.0",
-    "env2": "^2.0.1",
+    "chalk": "^1.1.1",
+    "env2": "^2.0.2",
     "esta": "^4.2.0",
-    "github-scraper": "^3.0.19",
-    "hiredis": "^0.4.0",
-    "redis": "^0.12.1"
+    "github-scraper": "^3.0.22",
+    "hiredis": "^0.4.2s",
+    "redis": "^2.0.1"
   },
   "devDependencies": {
-    "codeclimate-test-reporter": "0.1.0",
+    "codeclimate-test-reporter": "0.1.1",
     "decache": "^3.0.3",
-    "istanbul": "^0.3.18",
-    "jsdoc": "^3.3.2",
+    "istanbul": "^0.3.21",
+    "jsdoc": "^3.3.3",
     "jshint": "^2.8.0",
-    "nodemon": "^1.4.1",
+    "nodemon": "^1.7.1",
     "pre-commit": "1.1.1",
-    "tap-spec": "^4.0.2",
+    "tap-spec": "^4.1.0",
     "tape": "^4.2.0"
   },
   "pre-commit": [
