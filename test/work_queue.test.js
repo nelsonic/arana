@@ -107,10 +107,11 @@ test(file+'Test scraper frequency by setting history to 24h+10sec ago!', functio
   })
 })
 
-test(file+'Close redis connection', function(t){
-  wq.redisClient.end();
-  var connected = wq.redisClient.connected
-  t.ok(connected === false, "✓ Connected to Redis? "+connected +" (as expected)");
-  decache('../lib/work_queue'); // delete from cache for taredown
-  t.end();
-})
+// no longer required because we are using redis-connection!
+// test(file+'Close redis connection', function(t){
+//   // wq.redisClient.end();
+//   // var connected = wq.redisClient.connected
+//   t.ok(connected === false, "✓ Connected to Redis? "+connected +" (as expected)");
+//   decache('../lib/work_queue'); // delete from cache for taredown
+//   t.end();
+// })
