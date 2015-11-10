@@ -131,11 +131,11 @@ test(file+'TASKER REPO Stats - scrape people who star the repo', function(t){
 test(file+'TASKER Following lists all people as tasks', function(t){
   var url = 'rjmk/following'
   gs(url, function(err, data) {
-    // console.log(data);
+    console.log(data);
     var tasks = tasker(data);
     console.log(tasks)
-    var task_str = tasks.join(' ');
-    t.ok(task_str.indexOf('anniva') > -1, '✓ Page: ' +url + ' has ' +data.stars + ' stars!')
+    var task_str = tasks.join(' '); 
+    t.ok(task_str.indexOf('FilWisher') > -1, '✓ Page: ' +url + ' has ' +data.stars + ' stars!');
     t.end();
   })
 });
